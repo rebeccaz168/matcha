@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import WebcamCapture from './components/WebcamCapture';
+import ColorFinder from './components/ColorFinder';
 
 function App() {
   return (
