@@ -13,18 +13,20 @@ function App() {
       .filter((color) => {
         // Convert the color to RGB
         const rgb = color.match(/\d+/g);
-  
+        console.log("rgb", rgb);
         // Check if it's a valid RGB color
-        if (rgb && rgb.length === 3) {
+        if (rgb) {
           const [r, g, b] = rgb.map(Number);
   
           // Define the logic for green and yellow
-          const isGreen = g > r && g > b;
+          const isGreen = g > r || g > b;
           console.log("rgb", rgb);
-          const isYellow = r > 200 && g > 200 && b < 100; // can change these thresholds
+          const isYellow = r > 10 && g > 10  && b < 10; // allows for more grey ish hues
+          const isBlack = r < 20 && g < 20 && b < 20; // Close to black
+
+          // Return true if the color is either green or yellow and not black
+          return (isGreen || isYellow) && !isBlack;
   
-          // Return true if the color is either green or yellow
-          return isGreen || isYellow;
         }
   
         return false; // If color format isn't recognized, exclude it
@@ -49,11 +51,12 @@ function App() {
   };
 
   console.log("image source", imageSrc);
+  console.log("colors", colors)
 
   return (
     <div>
       <h1>Matcha Shade Finder</h1>
-      <DisplayImage/>
+      <DisplayImage setImgSrc={setImageSrc}/>
       <WebcamCapture onCapture={setImageSrc} />
       {/* Assuming ColorExtractor expects children to extract colors from */}
       { imageSrc && (

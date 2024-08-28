@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-function DisplayImage() {
-  const [imageSrc, setImageSrc] = useState(null);
+function DisplayImage({setImgSrc}) {
+  // const [UploadImageSrc, setUploadImageSrc] = useState(null);
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImageSrc(e.target.result);
+        // setUploadImageSrc(e.target.result);
+        setImgSrc(e.target.result);
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -17,7 +18,7 @@ function DisplayImage() {
     <div>
       <h1>Upload an Image of your Matcha</h1>
       <input type="file" name="myImage" onChange={onImageChange} />
-      {imageSrc && <img src={imageSrc} alt="Uploaded Matcha Image" />}
+      {/* {UploadImageSrc && <img src={UploadImageSrc} alt="Uploaded Matcha Image" />} */}
     </div>
   );
 }
