@@ -1,27 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import WebcamCapture from './components/WebcamCapture';
-import ColorFinder from './components/ColorFinder';
+import React, { useState } from 'react';
+import WebcamCapture from './Webcam';
+// import ColorFinder from  './Colorfinder'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [imageSrc, setImageSrc] = useState(null);
+
+    return (
+      <div>
+        <h1>Matcha Shade Finder</h1>
+        <WebcamCapture onCapture={setImageSrc} />
+        {/* {imageSrc && <ColorFinder imageSrc={imageSrc} />} */}
+      </div>
+    );
+
 }
 
 export default App;
